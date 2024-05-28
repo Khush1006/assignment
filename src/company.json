@@ -1,0 +1,11 @@
+[
+    { "id": 1, "name": "Company A", "location": "New York" },
+    { "id": 2, "name": "Company B", "location": "San Francisco" },
+    { "id": 3, "name": "Company C", "location": "Pune" },
+    { "id": 4, "name": "Company D", "location": "Delhi" },
+    { "id": 5, "name": "Company E", "location": "Dubai" },
+    { "id": 6, "name": "Company F", "location": "Singapore" },
+    { "id": 7, "name": "Company G", "location": "China" },
+    { "id": 8, "name": "Company H", "location": "Noida" }
+  ]
+  
