@@ -24,8 +24,6 @@ const EmployeeData = () => {
     return company ? company.name : "Unknown";
   };
   useEffect(() => {
-
-    console.log("weedac")
     dispatch(addData({ companies:company, employees:employee }));
   }, []);
   return (
