@@ -1,31 +1,44 @@
 import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Container,
-  Typography
-} from "@mui/material";
+import { styled } from '@mui/material/styles';
 import { useSelector, useDispatch } from "react-redux";
 import { addData } from "../redux/employeeDataSlice";
-import company from '../company.json';
-import employee from '../employee.json'
+import company from "../utils/company.json";
+import employee from "../utils/employee.json";
+import Container from "@mui/material/Container";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+
+const Roots = styled('div')(({ theme }) => ({
+  fontWeight: "bold",
+  textTransform: "uppercase"
+}));
+
+const TableHeadCell = ({ children }) => (
+  <TableCell>
+    <Roots>{children}</Roots>
+  </TableCell>
+);
+
 const EmployeeData = () => {
   const dispatch = useDispatch();
   const { companies, employees } = useSelector((state) => state?.employeeData);
 
   const getCompanyName = (companyId) => {
     const company = companies.find((company) => company.id === companyId);
-    return company ? company.name : "Unknown";
+    return company?.name ?? "Unknown";
   };
+
   useEffect(() => {
-    dispatch(addData({ companies:company, employees:employee }));
-  }, []);
+    dispatch(addData({ companies: company, employees: employee }));
+  }, [dispatch]);
+
   return (
     <Container>
       <Typography
@@ -39,21 +52,9 @@ const EmployeeData = () => {
           <Table sx={{ minWidth: 650 }} aria-label="Employee data table">
             <TableHead>
               <TableRow>
-                <TableCell
-                  sx={{ fontWeight: "bold", textTransform: "uppercase" }}
-                >
-                  Employee Name
-                </TableCell>
-                <TableCell
-                  sx={{ fontWeight: "bold", textTransform: "uppercase" }}
-                >
-                  Company
-                </TableCell>
-                <TableCell
-                  sx={{ fontWeight: "bold", textTransform: "uppercase" }}
-                >
-                  Position
-                </TableCell>
+                <TableHeadCell>Employee Name</TableHeadCell>
+                <TableHeadCell>Company</TableHeadCell>
+                <TableHeadCell>Position</TableHeadCell>
               </TableRow>
             </TableHead>
             <TableBody>
